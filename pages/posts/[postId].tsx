@@ -1,7 +1,9 @@
 import Form from "@/components/Form";
 import Header from "@/components/Header";
+import CommentFeed from "@/components/posts/CommentFeed";
 import PostItem from "@/components/posts/PostItem";
 import usePost from "@/hooks/usePost";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 
@@ -21,6 +23,11 @@ const PostView = () => {
 
     return (
         <>
+            <Head>
+                <title>{ `${ fetchedPost.user.name } on Twitter: "${ fetchedPost.body }"` }</title>
+                <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+            </Head>
+
             <Header label="Tweet" showBackArrow />
 
             <PostItem data={ fetchedPost } />
@@ -30,6 +37,8 @@ const PostView = () => {
                 isComment
                 placeholder="Tweet your reply"
             />
+
+            <CommentFeed comments={ fetchedPost?.comments } />
         </>
     );
 }
