@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import UserBio from "@/components/users/UserBio";
 import UserHero from "@/components/users/UserHero";
 import useUser from "@/hooks/useUser";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 
@@ -21,6 +22,11 @@ const UserView = () => {
 
     return (
         <>
+            <Head>
+                <title>{ `${ fetchedUser?.name } (@${ fetchedUser?.username })` }</title>
+                <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+            </Head>
+
             <Header showBackArrow label={ fetchedUser?.name } />
 
             <UserHero userId={ userId as string } />
